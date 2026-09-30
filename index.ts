@@ -7,7 +7,11 @@ import sgMail from '@sendgrid/mail'
 import mongoose from 'mongoose'
 import { stats } from './models/stats.js'
 const app = express()
-app.use(cors({ origin: process.env.FrontendUrl }))
+const allowedOrigins = [
+  process.env.FrontendUrl,
+  'https://unwed-predict-elaborate.ngrok-free.dev',
+].filter((origin): origin is string => Boolean(origin))
+app.use(cors({ origin: allowedOrigins, credentials: true }))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 
