@@ -3,7 +3,7 @@ import { sendMail, addMail, getData, sendingMails } from '../controllers/emails.
 import { createList, SendGridWebhook, GetSendGridData } from '../controllers/list.js'
 import { GetSendGridStats } from '../sendGrid.js'
 import { createZoomMeeting, handleZoomCallback, startZoomAuthorization } from '../controllers/zoomOAuth.js'
-
+import { exchangeCode, metacallback } from "../controllers/whatsapp.js"
 const router = Router()
 
 
@@ -19,4 +19,6 @@ router.route("/sendgrid/webhook").post(SendGridWebhook)
 router.route("/sendgrid/data").get(GetSendGridData);
 router.route("/sendgrid/stats").get(GetSendGridStats);
 router.route('/zoom/meetings').post(createZoomMeeting)
+router.route("/meta/callback").get(metacallback)
+router.route("/api/whatsapp/exchange-code").post(exchangeCode)
 export default router
